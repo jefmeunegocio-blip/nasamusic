@@ -1,0 +1,6 @@
+{
+  "name": "NASA - Núcleo de Artes Sabino",
+  "description": "Plataforma oficial do Núcleo de Artes Sabino. Aulas profissionais de Violão e Guitarra do iniciante ao avançado.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
