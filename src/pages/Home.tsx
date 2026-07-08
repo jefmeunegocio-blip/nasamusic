@@ -37,7 +37,7 @@ export default function Home({ config, courses, plans, teachers, gallery, blogPo
     {
       name: "Rodrigo Almeida",
       role: "Aluno de Violão Fingerstyle",
-      text: "A estrutura física da escola em Moema é fantástica, com ótimos instrumentos disponíveis. Mas o diferencial é o acompanhamento pedagógico. O plano de treino semanal cabe perfeitamente na minha rotina corrida de trabalho.",
+      text: "A estrutura física da escola em Diadema é fantástica, com ótimos instrumentos disponíveis. Mas o diferencial é o acompanhamento pedagógico. O plano de treino semanal cabe perfeitamente na minha rotina corrida de trabalho.",
       stars: 5,
       avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200"
     }
@@ -102,7 +102,7 @@ export default function Home({ config, courses, plans, teachers, gallery, blogPo
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
             </span>
             <span className="text-[11px] font-mono tracking-widest text-brand-light uppercase font-semibold">
-              Matrículas Abertas • Moema / Online
+              Matrículas Abertas • Diadema / Online
             </span>
           </motion.div>
 
@@ -228,7 +228,7 @@ export default function Home({ config, courses, plans, teachers, gallery, blogPo
               },
               {
                 title: "Aulas Presenciais",
-                desc: "Estúdio climatizado, isolamento acústico refinado e excelentes instrumentos disponíveis em Moema.",
+                desc: "Estúdio climatizado, isolamento acústico refinado e excelentes instrumentos disponíveis em Diadema.",
                 icon: Music,
               },
               {
@@ -607,7 +607,7 @@ export default function Home({ config, courses, plans, teachers, gallery, blogPo
             Pronto para dar os primeiros acordes?
           </h2>
           <p className="text-neutral-400 mt-4 text-sm font-sans max-w-2xl mx-auto leading-relaxed">
-            Agende hoje mesmo uma aula experimental gratuita na nossa escola em Moema. Traga apenas sua vontade de aprender, nós fornecemos o instrumento!
+            Agende hoje mesmo uma aula experimental gratuita na nossa escola em Diadema. Traga apenas sua vontade de aprender, nós fornecemos o instrumento!
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

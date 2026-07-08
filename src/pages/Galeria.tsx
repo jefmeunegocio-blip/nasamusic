@@ -60,7 +60,7 @@ export default function Gallery({ gallery }: GalleryProps) {
             Galeria de Fotos
           </h1>
           <p className="text-neutral-400 mt-4 text-sm font-sans">
-            Explore as dependências da nossa escola em Moema, nossos recitais com alunos de todos os níveis e ensaios gerais com bandas profissionais de apoio.
+            Explore as dependências da nossa escola em Diadema, nossos recitais com alunos de todos os níveis e ensaios gerais com bandas profissionais de apoio.
           </p>
         </div>
 

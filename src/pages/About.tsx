@@ -39,8 +39,8 @@ export default function About({ config }: AboutProps) {
     },
     {
       year: "2018",
-      title: "Mudança para Moema",
-      desc: "Inauguramos nossa sede premium em Moema, integrando cabine acústica profissional de gravação, salas climatizadas e estacionamento conveniado para os alunos."
+      title: "Nossa Sede em Diadema",
+      desc: "Inauguramos nossa sede premium em Diadema, integrando salas climatizadas, excelentes instrumentos e ambiente profissional de apoio para os alunos."
     },
     {
       year: "2023",
@@ -81,7 +81,7 @@ export default function About({ config }: AboutProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
-              <p className="text-xs font-mono text-brand-light font-bold">Moema, São Paulo</p>
+              <p className="text-xs font-mono text-brand-light font-bold">Serraria, Diadema</p>
               <h3 className="font-poppins font-extrabold text-lg text-white mt-1">Ambiente de imersão artística profissional</h3>
             </div>
           </div>

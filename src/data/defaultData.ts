@@ -6,15 +6,15 @@ export const defaultSchoolConfig: SchoolConfig = {
   slogan: "Escola de Música Especializada em Violão e Guitarra",
   heroTitle: "Aprenda Violão e Guitarra com quem realmente ensina.",
   heroSubtitle: "Do iniciante ao avançado, desenvolva sua técnica, musicalidade e repertório através de uma metodologia exclusiva voltada ao seu ritmo.",
-  whatsapp: "5511999999999",
+  whatsapp: "5511962803599",
   instagram: "https://instagram.com/nucleodeartessabino",
   facebook: "https://facebook.com/nucleodeartessabino",
   tiktok: "https://tiktok.com/@nucleodeartessabino",
   youtube: "https://youtube.com/@nucleodeartessabino",
-  phone: "(11) 99999-9999",
+  phone: "(11) 96280-3599",
   email: "contato@nucleodeartessabino.com",
-  address: "Alameda dos Anapurus, 1200 - Moema, São Paulo - SP",
-  mapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.0513661205315!2d-46.662057385021424!3d-23.60250918466185!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!3f0!3m2!1i1024!2i1024!3m1!1s0x94ce5a07204fc559%3A0xcb064df19d08e5e1!2sAl.%20dos%20Anapurus%2C%201200%20-%20Moema%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004087-003!5e0!3m2!1spt-BR!2sbr!4v1680000000000!5m2!1spt-BR!2sbr",
+  address: "Rua Tupiniquins, 357 - Serraria, Diadema - SP",
+  mapsEmbedUrl: "https://maps.google.com/maps?q=Rua%20Tupiniquins,%20357%20-%20Serraria,%20Diadema%20-%20SP&t=&z=15&ie=UTF8&iwloc=&output=embed",
   heroImage: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=1600",
   aboutTitle: "Formando músicos de verdade desde 2006.",
   aboutSubtitle: "O Núcleo de Artes Sabino nasceu de uma insatisfação do Professor Sabino com o ensino tradicional de música. Muitas escolas focavam em exercícios de digitação excessivamente maçantes e mecânicos, ignorando a vontade do aluno de fazer música de verdade ou negligenciando a percepção auditiva.",
@@ -152,7 +152,7 @@ export const defaultGallery: GalleryItem[] = [
     type: "image",
     category: "Aulas",
     url: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&q=80&w=800",
-    description: "Nosso ambiente presencial em Moema, climatizado e equipado com excelentes instrumentos."
+    description: "Nosso ambiente presencial em Diadema, climatizado e equipado com excelentes instrumentos."
   },
   {
     id: "gal2",

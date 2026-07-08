@@ -143,7 +143,7 @@ export default function Footer({ config }: FooterProps) {
               />
             </div>
             <p className="text-[11px] text-neutral-500 leading-normal">
-              Localizados no coração de Moema, com fácil acesso e estacionamento conveniado.
+              Localizados no bairro Serraria em Diadema, com fácil acesso para você estudar música.
             </p>
           </div>
 

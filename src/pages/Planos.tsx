@@ -244,7 +244,7 @@ export default function PlansPage({ config, plans }: PlansPageProps) {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="Ex: (11) 99999-9999"
+                        placeholder="Ex: (11) 96280-3599"
                         className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-accent transition-colors"
                       />
                     </div>

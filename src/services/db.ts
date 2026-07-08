@@ -45,6 +45,27 @@ const getOrSetDefault = <T>(key: string, defaultValue: T): T => {
 
 // Self-executing migration to clean up old defaults from user's localStorage
 try {
+  const savedConfig = localStorage.getItem(KEYS.CONFIG);
+  if (savedConfig) {
+    try {
+      const config = JSON.parse(savedConfig) as SchoolConfig;
+      if (
+        config.phone === "(11) 99999-9999" || 
+        config.whatsapp === "5511999999999" || 
+        config.address?.includes("Anapurus") || 
+        config.address?.includes("Moema")
+      ) {
+        config.phone = "(11) 96280-3599";
+        config.whatsapp = "5511962803599";
+        config.address = "Rua Tupiniquins, 357 - Serraria, Diadema - SP";
+        config.mapsEmbedUrl = "https://maps.google.com/maps?q=Rua%20Tupiniquins,%20357%20-%20Serraria,%20Diadema%20-%20SP&t=&z=15&ie=UTF8&iwloc=&output=embed";
+        localStorage.setItem(KEYS.CONFIG, JSON.stringify(config));
+      }
+    } catch (e) {
+      console.error("Config parsing/migrating error", e);
+    }
+  }
+
   const savedCourses = localStorage.getItem(KEYS.COURSES);
   if (savedCourses) {
     let courses = JSON.parse(savedCourses) as Course[];

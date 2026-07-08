@@ -194,10 +194,10 @@ export default function Contact({ config }: ContactProps) {
                         required: "Por favor, insira um número de telefone para contato",
                         pattern: {
                           value: /^\(?[1-9]{2}\)?\s?[9]?[0-9]{4}-?[0-9]{4}$/,
-                          message: "Insira um formato válido de celular. Ex: (11) 99999-9999"
+                          message: "Insira um formato válido de celular. Ex: (11) 96280-3599"
                         }
                       })}
-                      placeholder="Ex: (11) 99999-9999"
+                      placeholder="Ex: (11) 96280-3599"
                       className={`w-full bg-[#161616] border rounded-xl px-4 py-3 text-xs text-white focus:outline-none transition-colors ${
                         errors.phone ? 'border-brand-danger focus:border-brand-danger' : 'border-neutral-800 focus:border-brand-accent'
                       }`}
@@ -295,13 +295,13 @@ export default function Contact({ config }: ContactProps) {
               Visite Nosso Estúdio
             </h2>
             <p className="text-neutral-400 mt-2 text-xs font-sans">
-              Estamos situados em Moema, com infraestrutura climatizada de ponta.
+              Estamos situados em Diadema, com infraestrutura climatizada de ponta.
             </p>
           </div>
 
           <div className="h-96 w-full rounded-3xl overflow-hidden border border-neutral-900 shadow-xl relative">
             <iframe
-              title="NASA Moema Localização Mapa"
+              title="NASA Diadema Localização Mapa"
               src={config.mapsEmbedUrl}
               width="100%"
               height="100%"
