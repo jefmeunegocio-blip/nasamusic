@@ -148,7 +148,7 @@ export default function Navbar({ config }: NavbarProps) {
           </div>
 
           {/* Mobile hamburger menu */}
-          <div className="flex lg:hidden items-center space-x-1 sm:space-x-1.5 shrink-0">
+          <div className="flex lg:hidden items-center space-x-4 sm:space-x-5 shrink-0">
             <Link
               to="/admin"
               className="flex items-center space-x-1 bg-zinc-900 border border-purple-900/40 text-neutral-300 p-2 sm:px-2.5 sm:py-1.5 rounded-full hover:text-white shrink-0"
