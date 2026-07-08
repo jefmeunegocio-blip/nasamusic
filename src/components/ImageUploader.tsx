@@ -192,7 +192,7 @@ export default function ImageUploader({
               {value ? (
                 <>
                   <img 
-                    src={value} 
+                    src={value || null} 
                     alt="Preview" 
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"

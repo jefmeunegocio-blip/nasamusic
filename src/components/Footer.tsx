@@ -132,7 +132,7 @@ export default function Footer({ config }: FooterProps) {
             <div className="h-32 w-full rounded-lg overflow-hidden border border-neutral-800 shadow-md relative group">
               <iframe
                 title="NASA Localização"
-                src={config.mapsEmbedUrl}
+                src={config.mapsEmbedUrl || null}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

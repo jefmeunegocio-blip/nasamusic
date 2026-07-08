@@ -1,4 +1,5 @@
 import { SchoolConfig, Course, Plan, Teacher, GalleryItem, BlogPost, FAQItem, StudyMaterial, Announcement, ClassCalendarEvent } from '../types';
+import professorSabinoImg from '../assets/images/professor_sabino_1783545273840.jpg';
 import { 
   defaultSchoolConfig, 
   defaultCourses, 
@@ -86,8 +87,8 @@ try {
   if (savedTeachers) {
     let teachers = JSON.parse(savedTeachers) as Teacher[];
     teachers = teachers.map(t => {
-      if (t.id === 'sabino' && t.image === 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800') {
-        return { ...t, image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800' };
+      if (t.id === 'sabino') {
+        return { ...t, image: professorSabinoImg };
       }
       return t;
     });

@@ -1,4 +1,5 @@
 import { SchoolConfig, Course, Plan, Teacher, GalleryItem, BlogPost, FAQItem, StudyMaterial, Announcement, ClassCalendarEvent } from '../types';
+import professorSabinoImg from '../assets/images/professor_sabino_1783545273840.jpg';
 
 export const defaultSchoolConfig: SchoolConfig = {
   logoName: "NASA",
@@ -128,7 +129,7 @@ export const defaultTeachers: Teacher[] = [
       "Improvisação Aplicada",
       "Metodologia para Iniciantes"
     ],
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800"
+    image: professorSabinoImg
   },
   {
     id: "diego",

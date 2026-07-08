@@ -6,6 +6,7 @@ import {
   Timer, Compass, MessageSquare, RotateCcw, Volume2, ShieldCheck, Heart 
 } from 'lucide-react';
 import { Course, SchoolConfig } from '../types';
+import professorSabinoImg from '../assets/images/professor_sabino_1783545273840.jpg';
 
 interface QuizProps {
   config: SchoolConfig;
@@ -304,7 +305,7 @@ export default function Quiz({ config, courses }: QuizProps) {
     let teacherName = 'Professor Sabino';
     let teacherRole = 'Fundador & Especialista em Harmonia';
     let teacherBio = 'Músico profissional com mais de 20 anos de experiência. Sabino desenvolveu a metodologia de ensino prático para violão, harmonia intuitiva e arranjos expressivos.';
-    let teacherImg = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800';
+    let teacherImg = professorSabinoImg;
 
     if (courseId === 'guitarra' && chosenGenre === 'rock') {
       teacherName = 'Diego Ramos';
@@ -503,7 +504,7 @@ export default function Quiz({ config, courses }: QuizProps) {
                 {/* Visual Cover / Recommended Course Info */}
                 <div className="lg:col-span-5 relative h-64 lg:h-auto min-h-[250px] bg-neutral-900">
                   <img 
-                    src={recommendation?.course.image} 
+                    src={recommendation?.course.image || null} 
                     alt={recommendation?.course.name} 
                     className="w-full h-full object-cover"
                   />
@@ -567,9 +568,9 @@ export default function Quiz({ config, courses }: QuizProps) {
                     </span>
                     <div className="flex items-center space-x-4">
                       <img 
-                        src={recommendation?.teacherImg} 
+                        src={recommendation?.teacherImg || null} 
                         alt={recommendation?.teacherName} 
-                        className="h-14 w-14 rounded-full object-cover border-2 border-brand-accent/30"
+                        className="h-14 w-14 rounded-full object-cover object-top border-2 border-brand-accent/30"
                       />
                       <div>
                         <h4 className="font-poppins font-black text-sm text-white">

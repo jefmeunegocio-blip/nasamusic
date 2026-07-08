@@ -103,7 +103,7 @@ export default function Gallery({ gallery }: GalleryProps) {
               >
                 <div className="relative overflow-hidden aspect-video sm:aspect-auto">
                   <img 
-                    src={item.url} 
+                    src={item.url || null} 
                     alt={item.title} 
                     className="w-full h-full object-cover max-h-[450px] transition-transform duration-700 group-hover:scale-103"
                   />
@@ -186,7 +186,7 @@ export default function Gallery({ gallery }: GalleryProps) {
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={currentItem.url}
+                src={currentItem.url || null}
                 alt={currentItem.title}
                 className={`max-w-full max-h-[70vh] rounded-xl object-contain transition-transform duration-300 ${
                   zoom ? 'scale-125 cursor-zoom-out' : 'cursor-zoom-in'

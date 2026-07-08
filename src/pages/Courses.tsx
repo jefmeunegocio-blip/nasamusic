@@ -72,7 +72,7 @@ export default function Courses({ config, courses }: CoursesProps) {
                   
                   <div className="relative rounded-3xl overflow-hidden border border-neutral-900 shadow-2xl h-[300px] sm:h-[400px] group">
                     <img 
-                      src={course.image} 
+                      src={course.image || null} 
                       alt={course.name} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
                     />

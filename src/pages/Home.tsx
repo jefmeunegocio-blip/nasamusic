@@ -306,7 +306,7 @@ export default function Home({ config, courses, plans, teachers, gallery, blogPo
               >
                 <div className="w-full md:w-2/5 h-56 md:h-auto overflow-hidden relative">
                   <img 
-                    src={course.image} 
+                    src={course.image || null} 
                     alt={course.name} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -488,7 +488,7 @@ export default function Home({ config, courses, plans, teachers, gallery, blogPo
             {/* Profile Avatar & Info */}
             <div className="flex items-center justify-center space-x-3 mt-8">
               <img 
-                src={testimonials[activeTestimonial].avatar} 
+                src={testimonials[activeTestimonial].avatar || null} 
                 alt={testimonials[activeTestimonial].name} 
                 className="h-10 w-10 rounded-full object-cover border border-purple-500/30"
               />

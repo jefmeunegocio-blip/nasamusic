@@ -302,7 +302,7 @@ export default function Contact({ config }: ContactProps) {
           <div className="h-96 w-full rounded-3xl overflow-hidden border border-neutral-900 shadow-xl relative">
             <iframe
               title="NASA Diadema Localização Mapa"
-              src={config.mapsEmbedUrl}
+              src={config.mapsEmbedUrl || null}
               width="100%"
               height="100%"
               style={{ border: 0 }}

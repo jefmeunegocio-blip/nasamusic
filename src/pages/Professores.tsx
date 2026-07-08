@@ -33,11 +33,11 @@ export default function Teachers({ teachers }: TeachersProps) {
             >
               <div>
                 {/* Visual Header / Portrait */}
-                <div className="h-64 sm:h-80 relative overflow-hidden">
+                <div className="h-80 sm:h-[480px] relative overflow-hidden">
                   <img 
-                    src={teacher.image} 
+                    src={teacher.image || null} 
                     alt={teacher.name} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-102"
                   />
                   {/* Subtle fade shadow */}
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-transparent to-transparent" />

@@ -75,7 +75,7 @@ export default function About({ config }: AboutProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-neutral-900 group h-[400px] sm:h-[480px]">
             <img 
-              src={config.aboutImage || "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800"} 
+              src={(config.aboutImage || "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800") || null} 
               alt="Sobre a escola" 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
