@@ -1,5 +1,5 @@
 import { SchoolConfig, Course, Plan, Teacher, GalleryItem, BlogPost, FAQItem, StudyMaterial, Announcement, ClassCalendarEvent } from '../types';
-const professorSabinoImg = '';
+import professorSabinoImg from '../assets/images/professor_sabino_1783549858079.jpg';
 
 export const defaultSchoolConfig: SchoolConfig = {
   logoName: "NASA",

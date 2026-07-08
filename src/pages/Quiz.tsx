@@ -6,7 +6,7 @@ import {
   Timer, Compass, MessageSquare, RotateCcw, Volume2, ShieldCheck, Heart 
 } from 'lucide-react';
 import { Course, SchoolConfig } from '../types';
-const professorSabinoImg = '';
+import professorSabinoImg from '../assets/images/professor_sabino_1783549858079.jpg';
 
 interface QuizProps {
   config: SchoolConfig;

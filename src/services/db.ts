@@ -1,5 +1,5 @@
 import { SchoolConfig, Course, Plan, Teacher, GalleryItem, BlogPost, FAQItem, StudyMaterial, Announcement, ClassCalendarEvent } from '../types';
-const professorSabinoImg = '';
+import professorSabinoImg from '../assets/images/professor_sabino_1783549858079.jpg';
 import { 
   defaultSchoolConfig, 
   defaultCourses, 
@@ -12,6 +12,8 @@ import {
   defaultAnnouncements, 
   defaultClassCalendar 
 } from '../data/defaultData';
+import { db } from './firebase';
+import { doc, collection, onSnapshot, setDoc, deleteDoc, getDoc, getDocs } from 'firebase/firestore';
 
 // LOCALSTORAGE KEYS
 const KEYS = {
@@ -43,6 +45,182 @@ const getOrSetDefault = <T>(key: string, defaultValue: T): T => {
     return defaultValue;
   }
 };
+
+// Background real-time synchronization with Firebase Firestore
+async function syncWithFirebase() {
+  try {
+    const configDocRef = doc(db, "config", "school");
+    const configSnap = await getDoc(configDocRef);
+    
+    if (!configSnap.exists()) {
+      console.log("Firebase Firestore is empty. Seeding local data to Firestore...");
+      
+      const config = getOrSetDefault(KEYS.CONFIG, defaultSchoolConfig);
+      await setDoc(configDocRef, config);
+      
+      const courses = getOrSetDefault(KEYS.COURSES, defaultCourses);
+      for (const item of courses) {
+        await setDoc(doc(db, "courses", item.id), item);
+      }
+      
+      const plans = getOrSetDefault(KEYS.PLANS, defaultPlans);
+      for (const item of plans) {
+        await setDoc(doc(db, "plans", item.id), item);
+      }
+      
+      const teachers = getOrSetDefault(KEYS.TEACHERS, defaultTeachers);
+      for (const item of teachers) {
+        await setDoc(doc(db, "teachers", item.id), item);
+      }
+      
+      const gallery = getOrSetDefault(KEYS.GALLERY, defaultGallery);
+      for (const item of gallery) {
+        await setDoc(doc(db, "gallery", item.id), item);
+      }
+      
+      const blog = getOrSetDefault(KEYS.BLOG, defaultBlogPosts);
+      for (const item of blog) {
+        await setDoc(doc(db, "blog", item.id), item);
+      }
+      
+      const faq = getOrSetDefault(KEYS.FAQ, defaultFAQs);
+      for (const item of faq) {
+        await setDoc(doc(db, "faq", item.id), item);
+      }
+      
+      const materials = getOrSetDefault(KEYS.MATERIALS, defaultStudyMaterials);
+      for (const item of materials) {
+        await setDoc(doc(db, "materials", item.id), item);
+      }
+      
+      const announcements = getOrSetDefault(KEYS.ANNOUNCEMENTS, defaultAnnouncements);
+      for (const item of announcements) {
+        await setDoc(doc(db, "announcements", item.id), item);
+      }
+      
+      const calendar = getOrSetDefault(KEYS.CALENDAR, defaultClassCalendar);
+      for (const item of calendar) {
+        await setDoc(doc(db, "calendar", item.id), item);
+      }
+      console.log("Firebase Firestore successfully seeded!");
+    } else {
+      console.log("Firebase Firestore already initialized. Connecting real-time listeners...");
+    }
+
+    // Connect real-time Firestore listeners to keep local state updated across devices
+    onSnapshot(doc(db, "config", "school"), (snapshot) => {
+      if (snapshot.exists()) {
+        localStorage.setItem(KEYS.CONFIG, JSON.stringify(snapshot.data()));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    onSnapshot(collection(db, "courses"), (snapshot) => {
+      const list: Course[] = [];
+      snapshot.forEach((d) => {
+        list.push(d.data() as Course);
+      });
+      if (list.length > 0) {
+        localStorage.setItem(KEYS.COURSES, JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    onSnapshot(collection(db, "plans"), (snapshot) => {
+      const list: Plan[] = [];
+      snapshot.forEach((d) => {
+        list.push(d.data() as Plan);
+      });
+      if (list.length > 0) {
+        localStorage.setItem(KEYS.PLANS, JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    onSnapshot(collection(db, "teachers"), (snapshot) => {
+      const list: Teacher[] = [];
+      snapshot.forEach((d) => {
+        list.push(d.data() as Teacher);
+      });
+      if (list.length > 0) {
+        localStorage.setItem(KEYS.TEACHERS, JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    onSnapshot(collection(db, "gallery"), (snapshot) => {
+      const list: GalleryItem[] = [];
+      snapshot.forEach((d) => {
+        list.push(d.data() as GalleryItem);
+      });
+      if (list.length > 0) {
+        localStorage.setItem(KEYS.GALLERY, JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    onSnapshot(collection(db, "blog"), (snapshot) => {
+      const list: BlogPost[] = [];
+      snapshot.forEach((d) => {
+        list.push(d.data() as BlogPost);
+      });
+      if (list.length > 0) {
+        localStorage.setItem(KEYS.BLOG, JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    onSnapshot(collection(db, "faq"), (snapshot) => {
+      const list: FAQItem[] = [];
+      snapshot.forEach((d) => {
+        list.push(d.data() as FAQItem);
+      });
+      if (list.length > 0) {
+        localStorage.setItem(KEYS.FAQ, JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    onSnapshot(collection(db, "materials"), (snapshot) => {
+      const list: StudyMaterial[] = [];
+      snapshot.forEach((d) => {
+        list.push(d.data() as StudyMaterial);
+      });
+      if (list.length > 0) {
+        localStorage.setItem(KEYS.MATERIALS, JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    onSnapshot(collection(db, "announcements"), (snapshot) => {
+      const list: Announcement[] = [];
+      snapshot.forEach((d) => {
+        list.push(d.data() as Announcement);
+      });
+      if (list.length > 0) {
+        localStorage.setItem(KEYS.ANNOUNCEMENTS, JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    onSnapshot(collection(db, "calendar"), (snapshot) => {
+      const list: ClassCalendarEvent[] = [];
+      snapshot.forEach((d) => {
+        list.push(d.data() as ClassCalendarEvent);
+      });
+      if (list.length > 0) {
+        localStorage.setItem(KEYS.CALENDAR, JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+  } catch (error) {
+    console.error("Error setting up Firebase synchronization:", error);
+  }
+}
+
+// Start the real-time background sync immediately!
+syncWithFirebase();
 
 // Self-executing migration to clean up old defaults from user's localStorage
 try {
@@ -88,8 +266,8 @@ try {
     try {
       let teachers = JSON.parse(savedTeachers) as Teacher[];
       teachers = teachers.map(t => {
-        if (t.id === 'sabino') {
-          return { ...t, image: '' };
+        if (t.id === 'sabino' && (!t.image || t.image.includes('professor_sabino_acoustic') || t.image.includes('1783545273840') || t.image === '')) {
+          return { ...t, image: professorSabinoImg };
         }
         return t;
       });
@@ -124,6 +302,7 @@ export const dbService = {
   },
   saveConfig(config: SchoolConfig): void {
     localStorage.setItem(KEYS.CONFIG, JSON.stringify(config));
+    setDoc(doc(db, "config", "school"), config).catch(e => console.error("Error writing config to Firebase:", e));
   },
 
   // COURSES
@@ -139,10 +318,12 @@ export const dbService = {
       current.push(course);
     }
     localStorage.setItem(KEYS.COURSES, JSON.stringify(current));
+    setDoc(doc(db, "courses", course.id), course).catch(e => console.error("Error writing course to Firebase:", e));
   },
   deleteCourse(id: string): void {
     const filtered = this.getCourses().filter(c => c.id !== id);
     localStorage.setItem(KEYS.COURSES, JSON.stringify(filtered));
+    deleteDoc(doc(db, "courses", id)).catch(e => console.error("Error deleting course from Firebase:", e));
   },
 
   // PLANS
@@ -158,15 +339,23 @@ export const dbService = {
       current.push(plan);
     }
     localStorage.setItem(KEYS.PLANS, JSON.stringify(current));
+    setDoc(doc(db, "plans", plan.id), plan).catch(e => console.error("Error writing plan to Firebase:", e));
   },
   deletePlan(id: string): void {
     const filtered = this.getPlans().filter(p => p.id !== id);
     localStorage.setItem(KEYS.PLANS, JSON.stringify(filtered));
+    deleteDoc(doc(db, "plans", id)).catch(e => console.error("Error deleting plan from Firebase:", e));
   },
 
   // TEACHERS
   getTeachers(): Teacher[] {
-    return getOrSetDefault(KEYS.TEACHERS, defaultTeachers);
+    const list = getOrSetDefault(KEYS.TEACHERS, defaultTeachers);
+    return list.map(t => {
+      if (t.id === 'sabino' && (!t.image || t.image.includes('professor_sabino_acoustic') || t.image.includes('1783545273840') || t.image === '')) {
+        return { ...t, image: professorSabinoImg };
+      }
+      return t;
+    });
   },
   saveTeacher(teacher: Teacher): void {
     const current = this.getTeachers();
@@ -177,10 +366,12 @@ export const dbService = {
       current.push(teacher);
     }
     localStorage.setItem(KEYS.TEACHERS, JSON.stringify(current));
+    setDoc(doc(db, "teachers", teacher.id), teacher).catch(e => console.error("Error writing teacher to Firebase:", e));
   },
   deleteTeacher(id: string): void {
     const filtered = this.getTeachers().filter(t => t.id !== id);
     localStorage.setItem(KEYS.TEACHERS, JSON.stringify(filtered));
+    deleteDoc(doc(db, "teachers", id)).catch(e => console.error("Error deleting teacher from Firebase:", e));
   },
 
   // GALLERY
@@ -196,10 +387,12 @@ export const dbService = {
       current.push(item);
     }
     localStorage.setItem(KEYS.GALLERY, JSON.stringify(current));
+    setDoc(doc(db, "gallery", item.id), item).catch(e => console.error("Error writing gallery item to Firebase:", e));
   },
   deleteGalleryItem(id: string): void {
     const filtered = this.getGallery().filter(g => g.id !== id);
     localStorage.setItem(KEYS.GALLERY, JSON.stringify(filtered));
+    deleteDoc(doc(db, "gallery", id)).catch(e => console.error("Error deleting gallery item from Firebase:", e));
   },
 
   // BLOG
@@ -215,10 +408,12 @@ export const dbService = {
       current.push(post);
     }
     localStorage.setItem(KEYS.BLOG, JSON.stringify(current));
+    setDoc(doc(db, "blog", post.id), post).catch(e => console.error("Error writing blog post to Firebase:", e));
   },
   deleteBlogPost(id: string): void {
     const filtered = this.getBlogPosts().filter(p => p.id !== id);
     localStorage.setItem(KEYS.BLOG, JSON.stringify(filtered));
+    deleteDoc(doc(db, "blog", id)).catch(e => console.error("Error deleting blog post from Firebase:", e));
   },
 
   // FAQ
@@ -234,10 +429,12 @@ export const dbService = {
       current.push(faq);
     }
     localStorage.setItem(KEYS.FAQ, JSON.stringify(current));
+    setDoc(doc(db, "faq", faq.id), faq).catch(e => console.error("Error writing FAQ to Firebase:", e));
   },
   deleteFAQ(id: string): void {
     const filtered = this.getFAQs().filter(f => f.id !== id);
     localStorage.setItem(KEYS.FAQ, JSON.stringify(filtered));
+    deleteDoc(doc(db, "faq", id)).catch(e => console.error("Error deleting FAQ from Firebase:", e));
   },
 
   // STUDY MATERIALS
@@ -253,10 +450,12 @@ export const dbService = {
       current.push(mat);
     }
     localStorage.setItem(KEYS.MATERIALS, JSON.stringify(current));
+    setDoc(doc(db, "materials", mat.id), mat).catch(e => console.error("Error writing study material to Firebase:", e));
   },
   deleteStudyMaterial(id: string): void {
     const filtered = this.getStudyMaterials().filter(m => m.id !== id);
     localStorage.setItem(KEYS.MATERIALS, JSON.stringify(filtered));
+    deleteDoc(doc(db, "materials", id)).catch(e => console.error("Error deleting study material from Firebase:", e));
   },
 
   // ANNOUNCEMENTS
@@ -272,10 +471,12 @@ export const dbService = {
       current.push(ann);
     }
     localStorage.setItem(KEYS.ANNOUNCEMENTS, JSON.stringify(current));
+    setDoc(doc(db, "announcements", ann.id), ann).catch(e => console.error("Error writing announcement to Firebase:", e));
   },
   deleteAnnouncement(id: string): void {
     const filtered = this.getAnnouncements().filter(a => a.id !== id);
     localStorage.setItem(KEYS.ANNOUNCEMENTS, JSON.stringify(filtered));
+    deleteDoc(doc(db, "announcements", id)).catch(e => console.error("Error deleting announcement from Firebase:", e));
   },
 
   // CALENDAR
@@ -291,10 +492,12 @@ export const dbService = {
       current.push(event);
     }
     localStorage.setItem(KEYS.CALENDAR, JSON.stringify(current));
+    setDoc(doc(db, "calendar", event.id), event).catch(e => console.error("Error writing calendar event to Firebase:", e));
   },
   deleteCalendarEvent(id: string): void {
     const filtered = this.getCalendarEvents().filter(e => e.id !== id);
     localStorage.setItem(KEYS.CALENDAR, JSON.stringify(filtered));
+    deleteDoc(doc(db, "calendar", id)).catch(e => console.error("Error deleting calendar event from Firebase:", e));
   },
 
   // RESET TO DEFAULT
@@ -309,6 +512,32 @@ export const dbService = {
     localStorage.setItem(KEYS.MATERIALS, JSON.stringify(defaultStudyMaterials));
     localStorage.setItem(KEYS.ANNOUNCEMENTS, JSON.stringify(defaultAnnouncements));
     localStorage.setItem(KEYS.CALENDAR, JSON.stringify(defaultClassCalendar));
+
+    setDoc(doc(db, "config", "school"), defaultSchoolConfig).catch(e => console.error("Error resetting school config in Firebase:", e));
+
+    const resetCollection = async (colName: string, items: any[]) => {
+      try {
+        const querySnapshot = await getDocs(collection(db, colName));
+        for (const docSnap of querySnapshot.docs) {
+          await deleteDoc(doc(db, colName, docSnap.id));
+        }
+        for (const item of items) {
+          await setDoc(doc(db, colName, item.id), item);
+        }
+      } catch (e) {
+        console.error(`Error resetting collection ${colName} in Firebase:`, e);
+      }
+    };
+
+    resetCollection("courses", defaultCourses);
+    resetCollection("plans", defaultPlans);
+    resetCollection("teachers", defaultTeachers);
+    resetCollection("gallery", defaultGallery);
+    resetCollection("blog", defaultBlogPosts);
+    resetCollection("faq", defaultFAQs);
+    resetCollection("materials", defaultStudyMaterials);
+    resetCollection("announcements", defaultAnnouncements);
+    resetCollection("calendar", defaultClassCalendar);
   }
 };
 
