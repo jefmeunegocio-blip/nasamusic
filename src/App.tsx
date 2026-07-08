@@ -61,7 +61,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#050505] text-white flex flex-col justify-between selection:bg-brand-primary selection:text-white">
+      <div className="min-h-screen bg-[#050505] text-white flex flex-col justify-between selection:bg-brand-primary selection:text-white overflow-x-hidden w-full max-w-full">
         
         {/* Responsive Navbar */}
         <Navbar config={config} />

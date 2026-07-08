@@ -593,7 +593,7 @@ export default function Home({ config, courses, plans, teachers, gallery, blogPo
       </section>
 
       {/* 8. CONTATO QUICK CTA */}
-      <section className="py-24 bg-brand-dark px-4 border-t border-neutral-900 relative">
+      <section className="py-24 bg-brand-dark px-4 border-t border-neutral-900 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-[600px] bg-brand-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto glass-panel border border-purple-500/20 rounded-3xl p-8 sm:p-12 relative z-10 text-center overflow-hidden">
