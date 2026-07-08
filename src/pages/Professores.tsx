@@ -33,14 +33,24 @@ export default function Teachers({ teachers }: TeachersProps) {
             >
               <div>
                 {/* Visual Header / Portrait */}
-                <div className="h-80 sm:h-[480px] relative overflow-hidden">
-                  <img 
-                    src={teacher.image || null} 
-                    alt={teacher.name} 
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-102"
-                  />
-                  {/* Subtle fade shadow */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-transparent to-transparent" />
+                <div className="h-80 sm:h-[480px] relative overflow-hidden bg-neutral-950 flex flex-col items-center justify-center border border-neutral-900/50">
+                  {teacher.image ? (
+                    <>
+                      <img 
+                        src={teacher.image} 
+                        alt={teacher.name} 
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover object-[center_18%] transition-transform duration-700 group-hover:scale-102"
+                      />
+                      {/* Subtle fade shadow */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-transparent to-transparent" />
+                    </>
+                  ) : (
+                    <div className="text-neutral-500 flex flex-col items-center space-y-2 select-none">
+                      <Music className="h-10 w-10 text-neutral-700" />
+                      <span className="font-mono text-xs uppercase tracking-widest text-neutral-600 font-bold">Adicionar Foto</span>
+                    </div>
+                  )}
                   
                   {/* Absolute Badge */}
                   <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">

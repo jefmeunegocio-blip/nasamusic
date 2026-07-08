@@ -1,5 +1,5 @@
 import { SchoolConfig, Course, Plan, Teacher, GalleryItem, BlogPost, FAQItem, StudyMaterial, Announcement, ClassCalendarEvent } from '../types';
-import professorSabinoImg from '../assets/images/professor_sabino_1783545273840.jpg';
+const professorSabinoImg = '';
 import { 
   defaultSchoolConfig, 
   defaultCourses, 
@@ -85,14 +85,18 @@ try {
 
   const savedTeachers = localStorage.getItem(KEYS.TEACHERS);
   if (savedTeachers) {
-    let teachers = JSON.parse(savedTeachers) as Teacher[];
-    teachers = teachers.map(t => {
-      if (t.id === 'sabino') {
-        return { ...t, image: professorSabinoImg };
-      }
-      return t;
-    });
-    localStorage.setItem(KEYS.TEACHERS, JSON.stringify(teachers));
+    try {
+      let teachers = JSON.parse(savedTeachers) as Teacher[];
+      teachers = teachers.map(t => {
+        if (t.id === 'sabino') {
+          return { ...t, image: '' };
+        }
+        return t;
+      });
+      localStorage.setItem(KEYS.TEACHERS, JSON.stringify(teachers));
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   const savedGallery = localStorage.getItem(KEYS.GALLERY);

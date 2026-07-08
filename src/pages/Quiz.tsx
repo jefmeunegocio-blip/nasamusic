@@ -6,7 +6,7 @@ import {
   Timer, Compass, MessageSquare, RotateCcw, Volume2, ShieldCheck, Heart 
 } from 'lucide-react';
 import { Course, SchoolConfig } from '../types';
-import professorSabinoImg from '../assets/images/professor_sabino_1783545273840.jpg';
+const professorSabinoImg = '';
 
 interface QuizProps {
   config: SchoolConfig;
@@ -567,11 +567,18 @@ export default function Quiz({ config, courses }: QuizProps) {
                       Professor Tutor Recomendado
                     </span>
                     <div className="flex items-center space-x-4">
-                      <img 
-                        src={recommendation?.teacherImg || null} 
-                        alt={recommendation?.teacherName} 
-                        className="h-14 w-14 rounded-full object-cover object-top border-2 border-brand-accent/30"
-                      />
+                      {recommendation?.teacherImg ? (
+                        <img 
+                          src={recommendation.teacherImg} 
+                          alt={recommendation.teacherName} 
+                          referrerPolicy="no-referrer"
+                          className="h-14 w-14 rounded-full object-cover object-[center_18%] border-2 border-brand-accent/30"
+                        />
+                      ) : (
+                        <div className="h-14 w-14 rounded-full bg-neutral-900 border-2 border-neutral-800 flex items-center justify-center text-neutral-500">
+                          <Music className="h-6 w-6" />
+                        </div>
+                      )}
                       <div>
                         <h4 className="font-poppins font-black text-sm text-white">
                           {recommendation?.teacherName}
