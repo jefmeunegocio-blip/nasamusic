@@ -70,15 +70,15 @@ export default function Navbar({ config }: NavbarProps) {
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-1.5 sm:space-x-2 shrink-0 group">
+          <Link to="/" className="flex items-center space-x-1 sm:space-x-2 shrink-0 group">
             <div className="relative flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-gradient-to-tr from-brand-primary to-brand-accent p-1 text-white shadow-md shadow-brand-accent/20 group-hover:scale-105 transition-transform duration-300 shrink-0">
-              <Music className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
+              <Music className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
             <div className="min-w-0">
-              <span className="block font-montserrat font-black text-sm xs:text-base sm:text-xl tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-neutral-100 to-brand-light truncate max-w-[110px] xs:max-w-[160px] sm:max-w-none">
+              <span className="block font-montserrat font-black text-xs min-[360px]:text-sm sm:text-xl tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-neutral-100 to-brand-light truncate max-w-[95px] min-[360px]:max-w-[140px] sm:max-w-none">
                 {config.logoName}
               </span>
-              <p className="text-[8px] sm:text-[9px] text-neutral-400 tracking-widest uppercase font-mono leading-none mt-0.5">
+              <p className="text-[7.5px] sm:text-[9px] text-neutral-400 tracking-widest uppercase font-mono leading-none mt-0.5">
                 Nucleo de Artes
               </p>
             </div>
@@ -148,21 +148,21 @@ export default function Navbar({ config }: NavbarProps) {
           </div>
 
           {/* Mobile hamburger menu */}
-          <div className="flex lg:hidden items-center space-x-1.5 shrink-0">
+          <div className="flex lg:hidden items-center space-x-1 sm:space-x-1.5 shrink-0">
             <Link
               to="/admin"
-              className="flex items-center space-x-1 bg-zinc-900 border border-purple-900/40 text-neutral-300 px-2 sm:px-2.5 py-1.5 rounded-full text-[10px] xs:text-[11px] font-semibold hover:text-white shrink-0"
+              className="flex items-center space-x-1 bg-zinc-900 border border-purple-900/40 text-neutral-300 p-2 sm:px-2.5 sm:py-1.5 rounded-full hover:text-white shrink-0"
               title="Painel Admin"
             >
-              <Settings className="h-3 w-3 text-brand-primary" />
-              <span>Dashboard</span>
+              <Settings className="h-3.5 w-3.5 text-brand-primary animate-spin-slow" />
+              <span className="hidden sm:inline text-xs font-semibold">Dashboard</span>
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-1.5 rounded-md text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors shrink-0"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-5.5 w-5.5" /> : <Menu className="h-5.5 w-5.5" />}
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
 
