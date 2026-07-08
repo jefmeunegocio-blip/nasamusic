@@ -120,10 +120,8 @@ async function syncWithFirebase() {
       snapshot.forEach((d) => {
         list.push(d.data() as Course);
       });
-      if (list.length > 0) {
-        localStorage.setItem(KEYS.COURSES, JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-      }
+      localStorage.setItem(KEYS.COURSES, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
     });
 
     onSnapshot(collection(db, "plans"), (snapshot) => {
@@ -131,10 +129,8 @@ async function syncWithFirebase() {
       snapshot.forEach((d) => {
         list.push(d.data() as Plan);
       });
-      if (list.length > 0) {
-        localStorage.setItem(KEYS.PLANS, JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-      }
+      localStorage.setItem(KEYS.PLANS, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
     });
 
     onSnapshot(collection(db, "teachers"), (snapshot) => {
@@ -142,10 +138,8 @@ async function syncWithFirebase() {
       snapshot.forEach((d) => {
         list.push(d.data() as Teacher);
       });
-      if (list.length > 0) {
-        localStorage.setItem(KEYS.TEACHERS, JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-      }
+      localStorage.setItem(KEYS.TEACHERS, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
     });
 
     onSnapshot(collection(db, "gallery"), (snapshot) => {
@@ -153,10 +147,8 @@ async function syncWithFirebase() {
       snapshot.forEach((d) => {
         list.push(d.data() as GalleryItem);
       });
-      if (list.length > 0) {
-        localStorage.setItem(KEYS.GALLERY, JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-      }
+      localStorage.setItem(KEYS.GALLERY, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
     });
 
     onSnapshot(collection(db, "blog"), (snapshot) => {
@@ -164,10 +156,8 @@ async function syncWithFirebase() {
       snapshot.forEach((d) => {
         list.push(d.data() as BlogPost);
       });
-      if (list.length > 0) {
-        localStorage.setItem(KEYS.BLOG, JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-      }
+      localStorage.setItem(KEYS.BLOG, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
     });
 
     onSnapshot(collection(db, "faq"), (snapshot) => {
@@ -175,10 +165,8 @@ async function syncWithFirebase() {
       snapshot.forEach((d) => {
         list.push(d.data() as FAQItem);
       });
-      if (list.length > 0) {
-        localStorage.setItem(KEYS.FAQ, JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-      }
+      localStorage.setItem(KEYS.FAQ, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
     });
 
     onSnapshot(collection(db, "materials"), (snapshot) => {
@@ -186,10 +174,8 @@ async function syncWithFirebase() {
       snapshot.forEach((d) => {
         list.push(d.data() as StudyMaterial);
       });
-      if (list.length > 0) {
-        localStorage.setItem(KEYS.MATERIALS, JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-      }
+      localStorage.setItem(KEYS.MATERIALS, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
     });
 
     onSnapshot(collection(db, "announcements"), (snapshot) => {
@@ -197,10 +183,8 @@ async function syncWithFirebase() {
       snapshot.forEach((d) => {
         list.push(d.data() as Announcement);
       });
-      if (list.length > 0) {
-        localStorage.setItem(KEYS.ANNOUNCEMENTS, JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-      }
+      localStorage.setItem(KEYS.ANNOUNCEMENTS, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
     });
 
     onSnapshot(collection(db, "calendar"), (snapshot) => {
@@ -208,10 +192,8 @@ async function syncWithFirebase() {
       snapshot.forEach((d) => {
         list.push(d.data() as ClassCalendarEvent);
       });
-      if (list.length > 0) {
-        localStorage.setItem(KEYS.CALENDAR, JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-      }
+      localStorage.setItem(KEYS.CALENDAR, JSON.stringify(list));
+      window.dispatchEvent(new Event('storage'));
     });
 
   } catch (error) {

@@ -111,10 +111,10 @@ export default function Navbar({ config }: NavbarProps) {
               <div className="flex items-center space-x-1">
                 <Link
                   to="/admin"
-                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-zinc-900 border border-zinc-700/50 text-xs font-semibold text-neutral-200 hover:bg-neutral-800 transition-colors"
+                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-purple-950/40 border border-purple-500/40 text-xs font-semibold text-neutral-200 hover:bg-purple-900/40 transition-colors shadow-md shadow-purple-950/50"
                 >
-                  <Settings className="h-3.5 w-3.5" />
-                  <span>Admin</span>
+                  <Settings className="h-3.5 w-3.5 text-brand-primary animate-spin-slow" />
+                  <span>Dashboard</span>
                 </Link>
                 <button
                   onClick={() => handleLogout('admin')}
@@ -127,10 +127,11 @@ export default function Navbar({ config }: NavbarProps) {
             ) : (
               <Link
                 to="/admin"
-                className="p-2 text-neutral-500 hover:text-brand-light transition-colors"
-                title="Acesso Administrativo"
+                className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-zinc-900 border border-purple-900/40 text-xs font-semibold text-neutral-300 hover:text-white hover:bg-purple-950/20 hover:border-purple-500/50 transition-all duration-300 shadow-md"
+                title="Acesso ao Painel Admin"
               >
-                <Settings className="h-3.5 w-3.5" />
+                <Settings className="h-3.5 w-3.5 text-brand-primary" />
+                <span>Dashboard</span>
               </Link>
             )}
 
@@ -148,15 +149,14 @@ export default function Navbar({ config }: NavbarProps) {
 
           {/* Mobile hamburger menu */}
           <div className="flex lg:hidden items-center space-x-2">
-            {isAdminLogged && (
-              <Link
-                to="/admin"
-                className="p-1.5 rounded-md text-amber-500 bg-amber-950/30 border border-amber-500/20"
-                title="Painel Admin"
-              >
-                <Settings className="h-4 w-4" />
-              </Link>
-            )}
+            <Link
+              to="/admin"
+              className="flex items-center space-x-1 bg-zinc-900 border border-purple-900/40 text-neutral-300 px-2.5 py-1.5 rounded-full text-[11px] font-semibold hover:text-white"
+              title="Painel Admin"
+            >
+              <Settings className="h-3 w-3 text-brand-primary" />
+              <span>Dashboard</span>
+            </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors"
