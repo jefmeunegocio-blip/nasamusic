@@ -471,7 +471,7 @@ export default function Home({ config, courses, plans, teachers, gallery, blogPo
             O que nossos alunos dizem
           </h2>
 
-          <div className="relative min-h-[300px] sm:min-h-[220px] bg-neutral-900/40 border border-neutral-900 rounded-3xl p-8 sm:p-12 backdrop-blur-sm">
+          <div className="relative min-h-[380px] xs:min-h-[300px] sm:min-h-[240px] md:min-h-[220px] bg-neutral-900/40 border border-neutral-900 rounded-3xl p-6 sm:p-12 backdrop-blur-sm">
             
             {/* Stars */}
             <div className="flex items-center justify-center space-x-1 text-amber-400 mb-6">

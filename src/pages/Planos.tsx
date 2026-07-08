@@ -178,7 +178,7 @@ export default function PlansPage({ config, plans }: PlansPageProps) {
         {selectedPlan && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-fade-in">
             <div 
-              className="glass-panel border border-purple-500/25 rounded-3xl max-w-md w-full p-6 sm:p-8 relative"
+              className="glass-panel border border-purple-500/25 rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button 

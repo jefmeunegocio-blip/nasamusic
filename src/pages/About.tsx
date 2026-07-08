@@ -168,7 +168,7 @@ export default function About({ config }: AboutProps) {
             {timeline.map((item, idx) => (
               <div key={idx} className="relative group">
                 {/* Timeline node */}
-                <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 h-4 w-4 rounded-full bg-brand-accent border-4 border-brand-dark group-hover:scale-125 transition-transform duration-300" />
+                <div className="absolute -left-[32px] sm:-left-[48px] top-1.5 h-4 w-4 rounded-full bg-brand-accent border-4 border-brand-dark group-hover:scale-125 transition-transform duration-300" />
                 
                 {/* Content */}
                 <div className="glass-panel p-6 rounded-2xl transition-all duration-300 group-hover:border-purple-500/25">

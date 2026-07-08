@@ -70,15 +70,15 @@ export default function Navbar({ config }: NavbarProps) {
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-tr from-brand-primary to-brand-accent p-1 text-white shadow-md shadow-brand-accent/20 group-hover:scale-105 transition-transform duration-300">
-              <Music className="h-5 w-5" />
+          <Link to="/" className="flex items-center space-x-1.5 sm:space-x-2 shrink-0 group">
+            <div className="relative flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-gradient-to-tr from-brand-primary to-brand-accent p-1 text-white shadow-md shadow-brand-accent/20 group-hover:scale-105 transition-transform duration-300 shrink-0">
+              <Music className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
             </div>
-            <div>
-              <span className="font-montserrat font-black text-xl tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-neutral-100 to-brand-light">
+            <div className="min-w-0">
+              <span className="block font-montserrat font-black text-sm xs:text-base sm:text-xl tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-neutral-100 to-brand-light truncate max-w-[110px] xs:max-w-[160px] sm:max-w-none">
                 {config.logoName}
               </span>
-              <p className="text-[9px] text-neutral-400 tracking-widest uppercase font-mono leading-none mt-0.5">
+              <p className="text-[8px] sm:text-[9px] text-neutral-400 tracking-widest uppercase font-mono leading-none mt-0.5">
                 Nucleo de Artes
               </p>
             </div>
@@ -148,10 +148,10 @@ export default function Navbar({ config }: NavbarProps) {
           </div>
 
           {/* Mobile hamburger menu */}
-          <div className="flex lg:hidden items-center space-x-2">
+          <div className="flex lg:hidden items-center space-x-1.5 shrink-0">
             <Link
               to="/admin"
-              className="flex items-center space-x-1 bg-zinc-900 border border-purple-900/40 text-neutral-300 px-2.5 py-1.5 rounded-full text-[11px] font-semibold hover:text-white"
+              className="flex items-center space-x-1 bg-zinc-900 border border-purple-900/40 text-neutral-300 px-2 sm:px-2.5 py-1.5 rounded-full text-[10px] xs:text-[11px] font-semibold hover:text-white shrink-0"
               title="Painel Admin"
             >
               <Settings className="h-3 w-3 text-brand-primary" />
@@ -159,10 +159,10 @@ export default function Navbar({ config }: NavbarProps) {
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors"
+              className="p-1.5 rounded-md text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors shrink-0"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-5.5 w-5.5" /> : <Menu className="h-5.5 w-5.5" />}
             </button>
           </div>
 
@@ -171,7 +171,7 @@ export default function Navbar({ config }: NavbarProps) {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-brand-dark/95 backdrop-blur-xl border-b border-purple-950/40 py-4 px-4 space-y-3 shadow-2xl animate-fade-in">
+        <div className="lg:hidden bg-brand-dark/95 backdrop-blur-xl border-b border-purple-950/40 py-4 px-4 space-y-3 shadow-2xl animate-fade-in max-h-[calc(100vh-5rem)] overflow-y-auto">
           <div className="flex flex-col space-y-1">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;

@@ -35,7 +35,7 @@ export default function Courses({ config, courses }: CoursesProps) {
         </div>
 
         {/* Custom Tab Filters */}
-        <div className="flex justify-center items-center space-x-2 mb-16 flex-wrap gap-y-2">
+        <div className="flex justify-center items-center gap-2.5 mb-16 flex-wrap">
           {[
             { id: 'all', label: 'Todos' },
             { id: 'violao', label: 'Violão' },

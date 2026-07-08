@@ -77,14 +77,14 @@ export default function Metodologia({ config }: MetodologiaProps) {
         </div>
 
         {/* Methodology Timeline */}
-        <div className="relative border-l-2 border-purple-900/30 max-w-4xl mx-auto pl-6 sm:pl-16 space-y-16">
+        <div className="relative ml-4 sm:ml-0 border-l-2 border-purple-900/30 max-w-4xl mx-auto pl-10 sm:pl-16 space-y-16">
           {/* Timeline absolute top light */}
-          <div className="absolute top-0 -left-[5px] h-2.5 w-2.5 rounded-full bg-brand-light" />
+          <div className="absolute top-0 -left-[6px] h-2.5 w-2.5 rounded-full bg-brand-light" />
 
           {steps.map((step, idx) => (
             <div key={idx} className="relative group">
               {/* Timeline bubble with numbers */}
-              <div className="absolute -left-[31px] sm:-left-[71px] top-0.5 flex h-12 w-12 items-center justify-center rounded-full bg-brand-dark border-2 border-brand-accent text-brand-light font-montserrat font-black text-lg shadow-lg group-hover:scale-105 transition-all duration-300">
+              <div className="absolute -left-[64px] sm:-left-[88px] top-0.5 flex h-12 w-12 items-center justify-center rounded-full bg-brand-dark border-2 border-brand-accent text-brand-light font-montserrat font-black text-lg shadow-lg group-hover:scale-105 transition-all duration-300">
                 {step.num}
               </div>
 
