@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plan, SchoolConfig } from '../types';
-import { CheckCircle, ArrowRight, Award, Music, Sparkles, X, ShieldAlert } from 'lucide-react';
+import { CheckCircle, ArrowRight, Award, Music, Sparkles, X, ShieldAlert, Edit2, Check } from 'lucide-react';
+import { dbService } from '../services/db';
 
 interface PlansPageProps {
   config: SchoolConfig;
@@ -12,6 +13,32 @@ export default function PlansPage({ config, plans }: PlansPageProps) {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [registeredCode, setRegisteredCode] = useState<string | null>(null);
+
+  // Quick edit state for professors/admins
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [editingPlanId, setEditingPlanId] = useState<string | null>(null);
+  const [tempPrice, setTempPrice] = useState('');
+
+  useEffect(() => {
+    const checkAdmin = () => {
+      setIsAdmin(localStorage.getItem('nasa_admin_logged') === 'true');
+    };
+    checkAdmin();
+    window.addEventListener('storage', checkAdmin);
+    return () => window.removeEventListener('storage', checkAdmin);
+  }, []);
+
+  const handleSavePriceInline = (plan: Plan) => {
+    if (!tempPrice.trim()) return;
+    const updatedPlan: Plan = {
+      ...plan,
+      price: tempPrice.trim()
+    };
+    dbService.savePlan(updatedPlan);
+    // Dispatch localstorage storage event to trigger reactivity in all tabs/components
+    window.dispatchEvent(new Event('storage'));
+    setEditingPlanId(null);
+  };
 
   const handleOpenModal = (plan: Plan) => {
     setSelectedPlan(plan);
@@ -61,6 +88,24 @@ export default function PlansPage({ config, plans }: PlansPageProps) {
     <div className="relative pt-24 pb-20 px-4">
       <div className="max-w-7xl mx-auto">
         
+        {/* Banner de Edição Rápida para o Professor */}
+        {isAdmin && (
+          <div className="mb-8 p-4 bg-gradient-to-r from-brand-primary/20 to-brand-accent/20 border border-brand-accent/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 animate-fade-in">
+            <div className="flex items-center space-x-3 text-center sm:text-left">
+              <div className="p-2 bg-brand-accent/20 rounded-xl text-brand-light shrink-0">
+                <Sparkles className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-white">Modo de Edição Rápida Ativo (Olá, Professor!)</h4>
+                <p className="text-xs text-neutral-400 mt-0.5">Você pode alterar os valores dos planos diretamente clicando no botão de lápis ao lado do preço.</p>
+              </div>
+            </div>
+            <span className="text-[10px] font-mono bg-brand-accent text-white px-2.5 py-1 rounded-full uppercase tracking-wider font-bold">
+              Painel do Professor
+            </span>
+          </div>
+        )}
+
         {/* Header section */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-xs font-mono font-bold tracking-widest text-brand-light uppercase">
@@ -94,10 +139,53 @@ export default function PlansPage({ config, plans }: PlansPageProps) {
               <div className="space-y-6">
                 <div>
                   <h3 className="font-poppins font-black text-xl text-white tracking-tight">{plan.name}</h3>
-                  <div className="mt-4 flex items-baseline">
-                    <span className="font-montserrat font-black text-4xl sm:text-5xl text-white">{plan.price}</span>
-                    <span className="text-xs text-neutral-400 font-sans ml-1">/ {plan.period}</span>
-                  </div>
+                  
+                  {editingPlanId === plan.id ? (
+                    <div className="mt-4 flex items-center space-x-2">
+                      <input
+                        type="text"
+                        value={tempPrice}
+                        onChange={(e) => setTempPrice(e.target.value)}
+                        className="bg-[#161616] border border-brand-accent rounded-xl px-3 py-2 text-sm font-black text-white w-32 focus:outline-none focus:ring-1 focus:ring-brand-accent"
+                        placeholder="Ex: R$ 250"
+                        autoFocus
+                      />
+                      <button
+                        onClick={() => handleSavePriceInline(plan)}
+                        className="p-2 bg-brand-primary hover:bg-brand-accent text-white rounded-lg transition-colors flex items-center justify-center"
+                        title="Salvar valor"
+                      >
+                        <Check className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => setEditingPlanId(null)}
+                        className="p-2 bg-neutral-800 text-neutral-400 hover:text-white rounded-lg transition-colors flex items-center justify-center"
+                        title="Cancelar"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="mt-4 flex items-center justify-between">
+                      <div className="flex items-baseline">
+                        <span className="font-montserrat font-black text-4xl sm:text-5xl text-white">{plan.price}</span>
+                        <span className="text-xs text-neutral-400 font-sans ml-1">/ {plan.period}</span>
+                      </div>
+                      
+                      {isAdmin && (
+                        <button
+                          onClick={() => {
+                            setEditingPlanId(plan.id);
+                            setTempPrice(plan.price);
+                          }}
+                          className="p-2 bg-neutral-900 border border-neutral-800 hover:border-brand-accent/40 text-brand-light rounded-full transition-all group flex items-center justify-center"
+                          title="Editar valor do plano"
+                        >
+                          <Edit2 className="h-3.5 w-3.5 group-hover:scale-110 transition-transform" />
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 <hr className="border-neutral-900" />

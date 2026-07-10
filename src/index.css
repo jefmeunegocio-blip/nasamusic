@@ -32,11 +32,26 @@ html, body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(124, 58, 237, 0.15);
+  /* GPU Hardware Acceleration to prevent screen tearing, flickering, and stripes on scroll */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
 }
 
 .glass-panel-hover:hover {
   border-color: rgba(124, 58, 237, 0.4);
   box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+}
+
+/* GPU acceleration for all backdrop-blur and high blur-radius filter containers to fix scroll artifacts */
+[class*="blur-"], [class*="backdrop-blur-"] {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
 }
 
 /* Neon Glow effect */
